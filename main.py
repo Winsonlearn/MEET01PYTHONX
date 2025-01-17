@@ -7,13 +7,13 @@ def home():
     if 'name' in request.args.keys() and 'umur' in request.args.keys():
         name = request.args.get('name', '?')
         age = int(request.args.get('age', '?'))
-        return render_template('home.html', name = name, age = age)
-    elif request.args["name"] == "budi":
-        return redirect("/contact1")
-    elif request.args["name"] == "santoso":
-        return redirect(url_for("contact1"))
-    else:
-        return f"404 Not Found"
+        return render_template('home.html', name=name, age=age)
+    elif 'name' in request.args: 
+        if request.args["name"] == "budi":
+            return redirect("/contact1")
+        elif request.args["name"] == "santoso":
+            return redirect(url_for("contact1"))
+    return "404 Not Found" 
 
 @app.route("/contact1")
 def contact1():
